@@ -1,0 +1,21 @@
+2、豆瓣电影评论情感与主题分析
+
+要求：抓取豆瓣电影评论，通过中文分词（jieba）、自然语言处理（NLP，如Spacy或Stanford CoreNLP）、情感分析(SnowNLP、NLTK或TextBlob)、主题模型（LDA）技术分析用户情感及讨论主题。写一份电影情感及主题分析报告。
+
+提示：通过selenium自动化点击的方式点击每部电影进入该电影的网页中，然后获取电影名称、导演、编剧、主演、类型、制片国家/地区、语言、上映时间、片场、又名、IMDb、豆瓣评分、剧情简介、短评等数据，其中电影名称、类型、评价电影名称、类型、评价用来做情感和主题分析。
+
+注意：
+1.采用selenium自动化设计，自动爬取，先爬取电影的网址，再通过模拟点击的形式进入该网址当中，获取电影详细数据。
+2.每收集完一部电影的所需信息，则回退到首页，重复第一步中的模拟点击，爬取第二部电影，以此类推将第一页所有电影的详细信息爬取下来。
+3.单页所有信息爬取完毕后，通过点击下一页来爬取第二页的数据，重复爬取数据，点击下一页步骤，直至所有数据爬取完毕。
+4.设置反爬措施，包括设置cookie:cookie
+ll="108257"; bid=WsXXm96_VIM; _pk_id.100001.4cf6=a765ff9dd361f295.1766117100.; _vwo_uuid_v2=D3F921254FE1DF3D223D8A69B8E6426F6|bb2e47638938e1f9c7098e33082b4c3f; __yadk_uid=VGuLDoNLgFjfrJvJMgOtkaQKUonnIT60; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1767705180%2C%22https%3A%2F%2Fwww.gdufemooc.cn%2F%22%5D; _pk_ses.100001.4cf6=1; ap_v=0,6.0; __utma=30149280.207456266.1766117101.1766117101.1767705180.2; __utmb=30149280.0.10.1767705180; __utmc=30149280; __utmz=30149280.1767705180.2.2.utmcsr=gdufemooc.cn|utmccn=(referral)|utmcmd=referral|utmcct=/; __utma=223695111.527966569.1766117101.1766117101.1767705180.2; __utmb=223695111.0.10.1767705180; __utmc=223695111; __utmz=223695111.1767705180.2.2.utmcsr=gdufemooc.cn|utmccn=(referral)|utmcmd=referral|utmcct=/
+设置user-agent:user-agent;
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36；
+设置referer：referer
+https://www.gdufemooc.cn/
+设置爬取单条数据时长为：10秒/条
+5.若爬取电影获取数据为0时停止运行，报错误：“未爬取到数据”
+6.关于获取短评这块，也需要模拟点击进入，其点击的地方网址类似这个：href="https://movie.douban.com/subject/1292052/comments?status=P"(以第一部电影肖申克的救赎的短评的网址为例)，然后将里面的所有短评全部爬取下来
+7.连接redis数据库来储存这些信息，用docker里面的redis，我已经打开了的，直接使用即可。
+这是初始网址：通过链接抓取：https://movie.douban.com/top250
